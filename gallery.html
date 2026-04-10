@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gallery - KoalasBasketball</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        /* Masonry Grid CSS for modern gallery look */
+        .masonry-grid {
+            column-count: 1;
+            column-gap: 1.5rem;
+        }
+
+        @media (min-width: 640px) {
+            .masonry-grid {
+                column-count: 2;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .masonry-grid {
+                column-count: 3;
+            }
+        }
+
+        .masonry-item {
+            break-inside: avoid;
+            margin-bottom: 1.5rem;
+            position: relative;
+            overflow: hidden;
+            border-radius: 1rem;
+            cursor: pointer;
+        }
+
+        .masonry-item img,
+        .masonry-item video {
+            width: 100%;
+            height: auto;
+            border-radius: 1rem;
+            transition: transform 0.5s ease;
+        }
+
+        .masonry-item:hover img,
+        .masonry-item:hover video {
+            transform: scale(1.05);
+        }
+
+        .overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(15, 23, 42, 0.9) 0%, transparent 60%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            display: flex;
+            align-items: flex-end;
+            padding: 1.5rem;
+        }
+
+        .masonry-item:hover .overlay {
+            opacity: 1;
+        }
+    </style>
+</head>
+
+<body class="bg-slate-900 text-white min-h-screen font-sans antialiased">
+
+    <!-- Navbar placeholder -->
+    <div id="navbar-container" class="z-50 w-full relative"></div>
+
+    <main class="flex-grow pt-28 pb-12 px-4 sm:px-6 lg:px-8 relative z-10 w-full max-w-7xl mx-auto">
+        <!-- Header -->
+        <div class="text-center animate-fade-in mb-12">
+            <h1
+                class="text-4xl font-extrabold text-white tracking-tight sm:text-5xl mb-4 text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-orange-600">
+                The Court View
+            </h1>
+            <p class="text-slate-400 text-lg max-w-2xl mx-auto">
+                Discover the premium quality and electrifying atmosphere at Koalas Basketball.
+            </p>
+        </div>
+
+        <!-- Filter tabs (dummy aesthetic) -->
+        <div class="flex flex-wrap justify-center gap-4 mb-10 animate-fade-in delay-100">
+            <button
+                class="px-6 py-2 rounded-full glass bg-orange-500/20 text-orange-400 border-orange-500/50 font-medium transition-all">All
+                Files</button>
+            <button
+                class="px-6 py-2 rounded-full glass hover:bg-slate-800 text-slate-300 transition-all font-medium">Courts</button>
+            <button
+                class="px-6 py-2 rounded-full glass hover:bg-slate-800 text-slate-300 transition-all font-medium">Action</button>
+            <button
+                class="px-6 py-2 rounded-full glass hover:bg-slate-800 text-slate-300 transition-all font-medium">Videos</button>
+        </div>
+
+        <!-- Gallery Grid -->
+        <div class="masonry-grid animate-fade-in delay-200">
+            <!-- Item 1 -->
+            <div class="masonry-item group shadow-[0_0_15px_rgba(0,0,0,0.5)] border border-slate-700/50">
+                <img src="https://images.unsplash.com/photo-1546519638-68e109498ffc?auto=format&fit=crop&q=80&w=800"
+                    alt="Players on court">
+                <div class="overlay">
+                    <div>
+                        <span
+                            class="inline-block px-2 py-1 bg-orange-500 text-xs font-bold rounded mb-2 shadow-lg">ACTION</span>
+                        <h3 class="text-lg font-bold text-white">Intensity Meets Hardwood</h3>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Item 2 -->
+            <div class="masonry-item group shadow-[0_0_15px_rgba(0,0,0,0.5)] border border-slate-700/50">
+                <img src="https://images.unsplash.com/photo-1505666287802-931dc83948e9?auto=format&fit=crop&q=80&w=800"
+                    alt="Hoop close up">
+                <div class="overlay">
+                    <div>
+                        <span
+                            class="inline-block px-2 py-1 bg-slate-700 text-white text-xs font-bold rounded mb-2 shadow-lg">DETAILS</span>
+                        <h3 class="text-lg font-bold text-white">Perfect Nets</h3>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Item 3: Dummy Video (Using an image with play icon for design if actual video is heavy, or direct dummy video) -->
+            <div class="masonry-item group shadow-[0_0_15px_rgba(249,115,22,0.2)] border border-orange-500/30">
+                <img src="https://images.unsplash.com/photo-1627627256672-027a4613d028?auto=format&fit=crop&q=80&w=800"
+                    alt="Video Placeholder" class="opacity-80">
+                <!-- Play Icon overlay -->
+                <div class="absolute inset-0 flex items-center justify-center pointer-events-none z-10">
+                    <div
+                        class="w-16 h-16 bg-orange-500/80 rounded-full flex items-center justify-center backdrop-blur-sm text-white text-2xl shadow-lg ring-4 ring-white/20">
+                        ▶
+                    </div>
+                </div>
+                <div class="overlay">
+                    <div>
+                        <span
+                            class="inline-block px-2 py-1 bg-red-500 text-xs font-bold rounded mb-2 shadow-lg">VIDEO</span>
+                        <h3 class="text-lg font-bold text-white">Championship Highlights</h3>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Item 4 -->
+            <div class="masonry-item group shadow-[0_0_15px_rgba(0,0,0,0.5)] border border-slate-700/50">
+                <img src="https://images.unsplash.com/photo-1519861531473-920026fac26b?auto=format&fit=crop&q=80&w=800"
+                    alt="Basketball court wide angle">
+                <div class="overlay">
+                    <div>
+                        <span
+                            class="inline-block px-2 py-1 bg-slate-700 text-white text-xs font-bold rounded mb-2 shadow-lg">COURTS</span>
+                        <h3 class="text-lg font-bold text-white">Premium Arena</h3>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Item 5 -->
+            <div class="masonry-item group shadow-[0_0_15px_rgba(0,0,0,0.5)] border border-slate-700/50">
+                <img src="https://images.unsplash.com/photo-1574623452050-14e511f45281?auto=format&fit=crop&q=80&w=800"
+                    alt="Balls on court">
+                <div class="overlay">
+                    <div>
+                        <span
+                            class="inline-block px-2 py-1 bg-orange-500 text-white text-xs font-bold rounded mb-2 shadow-lg">GEAR</span>
+                        <h3 class="text-lg font-bold text-white">Match Ready</h3>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Item 6 -->
+            <div class="masonry-item group shadow-[0_0_15px_rgba(0,0,0,0.5)] border border-slate-700/50">
+                <img src="https://images.unsplash.com/photo-1510006851064-e6056cd0e3a8?auto=format&fit=crop&q=80&w=800"
+                    alt="Player silhouette">
+                <div class="overlay">
+                    <div>
+                        <span
+                            class="inline-block px-2 py-1 bg-slate-700 text-white text-xs font-bold rounded mb-2 shadow-lg">ACTION</span>
+                        <h3 class="text-lg font-bold text-white">Evening Runs</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Footer placeholder -->
+    <div id="footer-container"></div>
+
+    <!-- Scripts -->
+    <!-- Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/navbar.js"></script>
+</body>
+
+</html>

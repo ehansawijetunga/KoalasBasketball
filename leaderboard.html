@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leaderboard - KoalasBasketball</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        .rank-badge {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            font-weight: 800;
+            font-size: 1.25rem;
+            color: white;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.5);
+        }
+
+        .rank-1 {
+            background: linear-gradient(135deg, #FFD700 0%, #FDB931 100%);
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+            border: 2px solid #FFF8DC;
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.6);
+        }
+
+        .rank-2 {
+            background: linear-gradient(135deg, #E0E0E0 0%, #BDBDBD 100%);
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+            border: 2px solid #FAFAFA;
+        }
+
+        .rank-3 {
+            background: linear-gradient(135deg, #CD7F32 0%, #A0522D 100%);
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+            border: 2px solid #FFE4C4;
+        }
+
+        .rank-other {
+            background: rgba(30, 41, 59, 0.8);
+            border: 1px solid #475569;
+            color: #94A3B8;
+            font-size: 1rem;
+        }
+    </style>
+</head>
+
+<body class="bg-slate-900 text-white min-h-screen font-sans antialiased relative overflow-x-hidden">
+
+    <!-- Ambient glow -->
+    <div
+        class="absolute top-0 right-1/4 -m-32 w-[600px] h-[600px] bg-yellow-500/10 rounded-full blur-[120px] mix-blend-screen pointer-events-none z-0">
+    </div>
+
+    <!-- Navbar placeholder -->
+    <div id="navbar-container" class="z-50 w-full relative"></div>
+
+    <main
+        class="flex-grow pt-28 pb-12 px-4 sm:px-6 lg:px-8 relative z-10 w-full max-w-5xl mx-auto flex flex-col items-center">
+        <!-- Header -->
+        <div class="text-center animate-fade-in mb-12">
+            <h1
+                class="text-4xl font-extrabold text-white tracking-tight sm:text-5xl flex items-center justify-center gap-4 mb-4">
+                <span class="text-5xl drop-shadow-[0_0_15px_rgba(255,215,0,0.5)]">🏆</span>
+                Wall of Fame
+                <span class="text-5xl drop-shadow-[0_0_15px_rgba(255,215,0,0.5)]">🏆</span>
+            </h1>
+            <p class="text-slate-400 text-lg max-w-2xl mx-auto">
+                The most active and dedicated ballers at Koalas. Rank up by booking and attending sessions!
+            </p>
+        </div>
+
+        <!-- Top 3 Podium (Visual flair) -->
+        <div class="w-full max-w-3xl mb-16 animate-fade-in delay-100 flex items-end justify-center gap-4 sm:gap-8 h-64"
+            id="podium-container">
+            <!-- Podium generated via JS -->
+            <!-- 2nd Place -->
+            <div class="flex flex-col items-center group cursor-pointer w-24 sm:w-32">
+                <div
+                    class="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-slate-800 border-4 border-[#C0C0C0] shadow-[0_0_15px_rgba(192,192,192,0.4)] flex items-center justify-center text-2xl font-bold mb-2 z-10 relative">
+                    <span id="podium-2-img">S</span>
+                    <div
+                        class="absolute -bottom-2 -right-2 w-8 h-8 rounded-full rank-2 text-sm flex items-center justify-center border-2 border-slate-900">
+                        2</div>
+                </div>
+                <h4 class="font-bold text-center text-sm sm:text-base truncate w-full" id="podium-2-name">Alex M.</h4>
+                <p class="text-xs text-orange-400 mb-2 font-bold"><span id="podium-2-score">45</span> Sessions</p>
+                <div
+                    class="w-full bg-gradient-to-t from-slate-800 to-[#C0C0C0]/20 h-32 rounded-t-lg border-t-2 border-[#C0C0C0]/50 relative overflow-hidden">
+                    <div
+                        class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iMiIgY3k9IjIiIHI9IjIiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC4wNSkiLz48L3N2Zz4=')]">
+                    </div>
+                </div>
+            </div>
+
+            <!-- 1st Place -->
+            <div class="flex flex-col items-center group cursor-pointer w-28 sm:w-40 z-20 transform translate-y-4">
+                <div
+                    class="w-20 h-20 sm:w-28 sm:h-28 rounded-full bg-slate-800 border-4 border-[#FFD700] shadow-[0_0_30px_rgba(255,215,0,0.6)] flex items-center justify-center text-4xl font-bold mb-2 z-10 relative">
+                    <span id="podium-1-img">K</span>
+                    <div
+                        class="absolute -bottom-2 -right-2 w-10 h-10 rounded-full rank-1 text-base flex items-center justify-center border-4 border-slate-900">
+                        1</div>
+                </div>
+                <h4 class="font-bold text-xl sm:text-2xl text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 to-yellow-600 text-center truncate w-full"
+                    id="podium-1-name">Jordan P.</h4>
+                <p class="text-sm text-yellow-500 mb-2 font-black uppercase tracking-widest"><span
+                        id="podium-1-score">82</span> Sessions</p>
+                <div
+                    class="w-full bg-gradient-to-t from-slate-800 to-[#FFD700]/30 h-48 rounded-t-lg border-t-4 border-[#FFD700]/70 relative overflow-hidden shadow-[0_-10px_20px_rgba(255,215,0,0.2)]">
+                    <div
+                        class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iMiIgY3k9IjIiIHI9IjIiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC4wNSkiLz48L3N2Zz4=')]">
+                    </div>
+                </div>
+            </div>
+
+            <!-- 3rd Place -->
+            <div class="flex flex-col items-center group cursor-pointer w-24 sm:w-32">
+                <div
+                    class="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-slate-800 border-4 border-[#CD7F32] shadow-[0_0_15px_rgba(205,127,50,0.4)] flex items-center justify-center text-2xl font-bold mb-2 z-10 relative">
+                    <span id="podium-3-img">M</span>
+                    <div
+                        class="absolute -bottom-2 -right-2 w-8 h-8 rounded-full rank-3 text-sm flex items-center justify-center border-2 border-slate-900">
+                        3</div>
+                </div>
+                <h4 class="font-bold text-center text-sm sm:text-base truncate w-full" id="podium-3-name">Chris B.</h4>
+                <p class="text-xs text-orange-400 mb-2 font-bold"><span id="podium-3-score">38</span> Sessions</p>
+                <div
+                    class="w-full bg-gradient-to-t from-slate-800 to-[#CD7F32]/20 h-24 rounded-t-lg border-t-2 border-[#CD7F32]/50 relative overflow-hidden">
+                    <div
+                        class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iMiIgY3k9IjIiIHI9IjIiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC4wNSkiLz48L3N2Zz4=')]">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Leaderboard List -->
+        <div
+            class="w-full glass rounded-3xl shadow-xl shadow-black/50 border border-slate-700/50 overflow-hidden animate-fade-in delay-200">
+            <!-- Header row -->
+            <div
+                class="grid grid-cols-12 gap-4 p-4 border-b border-slate-700 bg-slate-800/80 text-xs sm:text-sm font-bold text-slate-400 uppercase tracking-wider">
+                <div class="col-span-2 sm:col-span-1 text-center">Rank</div>
+                <div class="col-span-7 sm:col-span-8">Player</div>
+                <div class="col-span-3 text-right pr-4">Bookings</div>
+            </div>
+
+            <!-- List body -->
+            <div class="divide-y divide-slate-700/50" id="leaderboard-list">
+                <!-- Data injected via JS -->
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Footer placeholder -->
+    <div id="footer-container" class="mt-auto relative z-10 w-full"></div>
+
+    <!-- Scripts -->
+    <!-- Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/navbar.js"></script>
+    <script src="js/leaderboard.js"></script>
+</body>
+
+</html>

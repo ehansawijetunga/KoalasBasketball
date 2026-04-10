@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Approvals - KoalasBasketball</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body class="bg-slate-900 text-white min-h-screen font-sans antialiased">
+
+    <!-- Navbar placeholder -->
+    <div id="navbar-container" class="z-50 w-full relative"></div>
+
+    <main class="flex-grow pt-28 pb-12 px-4 sm:px-6 lg:px-8 relative z-10 w-full max-w-7xl mx-auto">
+        <!-- Header -->
+        <div class="mb-12 animate-fade-in flex items-center justify-between">
+            <div>
+                <h1 class="text-3xl font-extrabold text-white tracking-tight flex items-center gap-3">
+                    <span class="text-3xl">⚙️</span> Control Center
+                </h1>
+                <p class="text-slate-400 mt-2">Manage player booking requests across all locations.</p>
+            </div>
+            <div class="glass px-6 py-4 rounded-2xl border border-orange-500/30">
+                <p class="text-orange-400 text-sm font-bold tracking-widest uppercase mb-1">Actions Alert</p>
+                <div class="text-2xl font-bold flex items-center gap-2">
+                    <span id="pending-count" class="text-white">0</span>
+                    <span class="text-sm font-normal text-slate-400">Pending Requests</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Pending Approvals Grid -->
+        <h2 class="text-2xl font-bold mb-6 flex items-center gap-2 animate-fade-in delay-100">
+            <span class="text-orange-500">📥</span> Incoming Requests
+        </h2>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 animate-fade-in delay-200" id="requests-grid">
+            <!-- Requests injected here via JS -->
+            <div class="col-span-full text-center p-12 glass rounded-2xl border border-slate-700/50 hidden"
+                id="no-requests-msg">
+                <span class="text-4xl mb-4 block">☕</span>
+                <p class="text-slate-400 text-lg">All caught up! No pending requests.</p>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Footer placeholder -->
+    <div id="footer-container" class="mt-auto relative z-10 w-full"></div>
+
+    <!-- Scripts -->
+    <!-- Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/navbar.js"></script>
+    <script src="js/admin.js"></script>
+</body>
+
+</html>

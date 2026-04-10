@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book a Court - KoalasBasketball</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body class="bg-slate-900 text-white min-h-screen flex flex-col font-sans antialiased relative">
+
+    <!-- Navbar -->
+    <div id="navbar-container" class="z-50 w-full relative"></div>
+
+    <main class="flex-grow pt-28 pb-12 px-4 sm:px-6 lg:px-8 relative z-10 w-full max-w-5xl mx-auto">
+        <div class="mb-10 text-center animate-fade-in">
+            <h1 class="text-4xl font-extrabold text-white tracking-tight sm:text-5xl mb-4">Reserve Your Session</h1>
+            <p class="text-slate-400 text-lg max-w-2xl mx-auto">We offer exactly 5 premium sessions per day. Book early
+                to secure your spot.</p>
+        </div>
+
+        <!-- Before Login state -->
+        <div id="login-prompt"
+            class="hidden glass p-8 rounded-2xl text-center shadow-lg shadow-orange-500/10 border border-slate-700/50 mb-8 animate-fade-in">
+            <div class="text-4xl mb-4">🔒</div>
+            <h2 class="text-2xl font-bold mb-2">Login Required</h2>
+            <p class="text-slate-400 mb-6">You must be logged in to book a session.</p>
+            <a href="login.html"
+                class="inline-block bg-orange-500 hover:bg-orange-600 text-white px-8 py-3 rounded-full font-bold shadow-[0_0_15px_rgba(249,115,22,0.4)] transition-all transform hover:-translate-y-1">Log
+                in or Sign Up</a>
+        </div>
+
+        <div id="booking-container" class="hidden grid grid-cols-1 lg:grid-cols-3 gap-8 animate-fade-in delay-100">
+            <!-- Left Side: Date Selection & Info -->
+            <div class="space-y-6 lg:col-span-1">
+                <div class="glass p-6 rounded-2xl shadow-lg border border-slate-700/50">
+                    <h3 class="text-xl font-bold mb-4 flex items-center gap-2">
+                        <span class="text-orange-500">📍</span> Select Location
+                    </h3>
+                    <select id="booking-location"
+                        class="w-full bg-slate-800 border border-slate-600 rounded-xl px-4 py-3 text-white focus:ring-2 focus:ring-orange-500 outline-none font-semibold text-sm mb-6">
+                        <!-- Injected via JS -->
+                    </select>
+
+                    <h3 class="text-xl font-bold mb-4 flex items-center gap-2">
+                        <span class="text-orange-500">📅</span> Select Date
+                    </h3>
+                    <input type="date" id="booking-date"
+                        class="w-full bg-slate-800 border border-slate-600 rounded-xl px-4 py-3 text-white focus:ring-2 focus:ring-orange-500 outline-none uppercase font-semibold text-sm tracking-wider">
+                </div>
+
+                <div class="glass p-6 rounded-2xl shadow-lg border border-slate-700/50">
+                    <div class="flex justify-between items-center mb-2">
+                        <span class="text-slate-400 font-medium">Daily Limit</span>
+                        <span class="text-orange-500 font-bold bg-orange-500/10 px-3 py-1 rounded-full text-xs">30 Spots
+                            (6/Slot)</span>
+                    </div>
+                    <div class="flex justify-between items-center">
+                        <span class="text-slate-400 font-medium">Available Spots</span>
+                        <span id="slots-available-count"
+                            class="text-green-400 font-bold bg-green-400/10 px-3 py-1 rounded-full text-sm border border-green-400/30">0</span>
+                    </div>
+                </div>
+
+                <!-- Admin specific view -->
+                <div id="admin-panel" class="hidden glass border border-orange-500/30 p-6 rounded-2xl">
+                    <h3
+                        class="text-orange-400 font-bold mb-2 text-sm uppercase tracking-widest flex items-center gap-2">
+                        Admin Diagnostics
+                    </h3>
+                    <p class="text-slate-300 text-sm mb-4">View total booked sessions for selected date.</p>
+                    <button id="clear-bookings-btn"
+                        class="w-full py-2 bg-red-900/40 hover:bg-red-900/80 text-red-200 border border-red-500/30 rounded-lg text-sm transition-colors">Clear
+                        Date Bookings</button>
+                </div>
+            </div>
+
+            <!-- Right Side: Time Slots -->
+            <div class="glass p-6 sm:p-8 rounded-2xl shadow-lg border border-slate-700/50 lg:col-span-2">
+                <h3 class="text-2xl font-bold mb-6 flex items-center gap-2">
+                    <span class="text-orange-500">⏰</span> Available Time Slots
+                </h3>
+
+                <div id="slots-container" class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <!-- Slots will be injected via JS -->
+                    <div class="text-slate-500 italic p-4 text-center sm:col-span-2">Please select a date first.</div>
+                </div>
+
+                <!-- Student Name Input -->
+                <div class="mt-8">
+                    <label for="student-name" class="block text-sm font-medium text-slate-300 mb-2">Student Name</label>
+                    <input id="student-name" type="text" placeholder="Enter student's full name"
+                        class="appearance-none block w-full px-4 py-3 border border-slate-700 rounded-xl bg-slate-800/50 text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all shadow-inner">
+                </div>
+
+                <div class="mt-8 pt-8 border-t border-slate-800">
+                    <button id="confirm-booking-btn" disabled
+                        class="w-full py-4 rounded-xl font-bold text-lg bg-slate-700 text-slate-400 cursor-not-allowed transition-all">
+                        Select a time slot
+                    </button>
+                    <div id="booking-msg" class="mt-4 text-center text-sm hidden font-medium"></div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <div id="footer-container" class="mt-auto relative z-10 w-full"></div>
+
+    <!-- Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/navbar.js"></script>
+    <script src="js/booking.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reviews - KoalasBasketball</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body class="bg-slate-900 text-white min-h-screen flex flex-col font-sans antialiased relative">
+
+    <!-- Navbar -->
+    <div id="navbar-container" class="z-50 w-full relative"></div>
+
+    <!-- Main Content -->
+    <main class="flex-grow pt-28 pb-12 px-4 sm:px-6 lg:px-8 relative z-10 w-full max-w-6xl mx-auto">
+
+        <div class="text-center animate-fade-in mb-12">
+            <h1
+                class="text-4xl font-extrabold text-white tracking-tight sm:text-5xl mb-4 text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-orange-600">
+                Player Reviews</h1>
+            <p class="text-slate-400 text-lg max-w-2xl mx-auto">See what our community thinks about the premium Koalas
+                experience.</p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <!-- Left Side: Add Review Form / Login Prompt -->
+            <div class="lg:col-span-1 animate-fade-in delay-100">
+                <div id="review-login-prompt"
+                    class="hidden glass p-8 rounded-2xl text-center shadow-lg border border-slate-700/50">
+                    <div class="text-4xl mb-4">💬</div>
+                    <h3 class="text-xl font-bold mb-2">Join the Conversation</h3>
+                    <p class="text-slate-400 mb-6 text-sm">Log in to share your experience on the court.</p>
+                    <a href="login.html"
+                        class="inline-block bg-orange-500 hover:bg-orange-600 text-white px-6 py-2 rounded-full font-bold shadow-lg transition-all transform hover:-translate-y-1 text-sm">Log
+                        in</a>
+                </div>
+
+                <div id="review-form-container"
+                    class="hidden glass p-6 rounded-2xl shadow-lg border border-slate-700/50">
+                    <h3 class="text-xl font-bold mb-4 flex items-center gap-2">
+                        <span class="text-orange-500">✍️</span> Write a Review
+                    </h3>
+
+                    <form id="review-form" class="space-y-4">
+                        <div>
+                            <label class="block text-sm font-medium text-slate-300 mb-2">Rating</label>
+                            <div class="star-rating">
+                                <input type="radio" id="star5" name="rating" value="5" />
+                                <label for="star5" title="5 stars"></label>
+                                <input type="radio" id="star4" name="rating" value="4" />
+                                <label for="star4" title="4 stars"></label>
+                                <input type="radio" id="star3" name="rating" value="3" />
+                                <label for="star3" title="3 stars"></label>
+                                <input type="radio" id="star2" name="rating" value="2" />
+                                <label for="star2" title="2 stars"></label>
+                                <input type="radio" id="star1" name="rating" value="1" />
+                                <label for="star1" title="1 star"></label>
+                            </div>
+                        </div>
+
+                        <div>
+                            <label for="review-text" class="block text-sm font-medium text-slate-300 mb-1">Your
+                                Thoughts</label>
+                            <textarea id="review-text" rows="4" required
+                                class="appearance-none block w-full px-4 py-3 border border-slate-700 rounded-xl bg-slate-800/50 text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all shadow-inner resize-none"
+                                placeholder="How was the court? The grip? The bounce?"></textarea>
+                        </div>
+
+                        <div id="review-error" class="hidden text-red-400 text-sm"></div>
+
+                        <button type="submit"
+                            class="w-full py-3 rounded-xl font-bold text-white bg-orange-500 hover:bg-orange-600 shadow-[0_0_15px_rgba(249,115,22,0.3)] hover:shadow-[0_0_25px_rgba(249,115,22,0.5)] transition-all transform hover:-translate-y-0.5">
+                            Post Review
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Right Side: Reviews List -->
+            <div class="lg:col-span-2 space-y-6 animate-fade-in delay-200" id="reviews-list-container">
+                <!-- Reviews injected via JS -->
+            </div>
+        </div>
+
+    </main>
+
+    <div id="footer-container" class="mt-auto relative z-10 w-full"></div>
+
+    <!-- Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/navbar.js"></script>
+    <script src="js/reviews.js"></script>
+</body>
+
+</html>

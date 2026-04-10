@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - KoalasBasketball</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body class="bg-slate-900 text-white min-h-screen flex flex-col font-sans antialiased relative">
+
+    <!-- Ambient glow -->
+    <div
+        class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-orange-500/10 rounded-full blur-[120px] mix-blend-screen pointer-events-none z-0">
+    </div>
+
+    <!-- Navbar -->
+    <div id="navbar-container" class="z-50 w-full relative"></div>
+
+    <main class="flex-grow flex items-center justify-center pt-24 pb-12 px-4 sm:px-6 lg:px-8 relative z-10 w-full">
+        <div
+            class="max-w-md w-full glass rounded-2xl p-8 sm:p-10 shadow-2xl shadow-orange-500/10 border border-slate-700/50 animate-fade-in relative overflow-hidden">
+            <!-- Decorative line -->
+            <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-orange-400 to-orange-600"></div>
+
+            <div class="text-center mb-10">
+                <div
+                    class="mx-auto w-16 h-16 bg-orange-500/20 text-orange-500 rounded-2xl flex items-center justify-center text-3xl mb-6 ring-1 ring-orange-500/30">
+                    🏀
+                </div>
+                <h2 class="text-3xl font-extrabold text-white tracking-tight">Welcome Back</h2>
+                <p class="mt-2 text-sm text-slate-400">
+                    Don't have an account?
+                    <a href="register.html"
+                        class="font-medium text-orange-400 hover:text-orange-300 transition-colors">Sign up</a>
+                </p>
+            </div>
+
+            <form id="login-form" class="space-y-6">
+                <div id="login-error"
+                    class="hidden rounded-lg bg-red-900/50 border border-red-500/50 p-4 text-sm text-red-200"></div>
+
+                <div class="space-y-4">
+                    <div>
+                        <label for="email" class="block text-sm font-medium text-slate-300 mb-1">Email address</label>
+                        <input id="email" name="email" type="email" autocomplete="email" required
+                            class="appearance-none block w-full px-4 py-3 border border-slate-700 rounded-xl bg-slate-800/50 text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all shadow-inner">
+                    </div>
+                    <div>
+                        <label for="password" class="block text-sm font-medium text-slate-300 mb-1">Password</label>
+                        <input id="password" name="password" type="password" required
+                            class="appearance-none block w-full px-4 py-3 border border-slate-700 rounded-xl bg-slate-800/50 text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all shadow-inner">
+                    </div>
+                </div>
+
+                <div>
+                    <button type="submit"
+                        class="group relative w-full flex justify-center py-3 px-4 border border-transparent text-sm font-bold rounded-xl text-white bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-400 hover:to-orange-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500 focus:ring-offset-slate-900 shadow-[0_0_20px_rgba(249,115,22,0.3)] hover:shadow-[0_0_30px_rgba(249,115,22,0.5)] transition-all transform hover:-translate-y-0.5 mt-4">
+                        Log In
+                    </button>
+                    <!-- Admin credentials info for ease of testing -->
+                    <div class="mt-4 text-xs text-center text-slate-500 italic">
+                        Test Admin: admin@koalas.com / admin
+                    </div>
+                </div>
+            </form>
+        </div>
+    </main>
+
+    <div id="footer-container" class="mt-auto relative z-10 w-full"></div>
+
+    <!-- Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/navbar.js"></script>
+    <script src="js/auth.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - KoalasBasketball</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body class="bg-slate-900 text-white min-h-screen font-sans antialiased">
+
+    <!-- Navbar placeholder -->
+    <div id="navbar-container" class="z-50 w-full relative"></div>
+
+    <main class="flex-grow pt-28 pb-12 px-4 sm:px-6 lg:px-8 relative z-10 w-full max-w-7xl mx-auto">
+        <!-- Header -->
+        <div class="mb-12 animate-fade-in flex flex-col md:flex-row items-center justify-between gap-6">
+            <div class="flex flex-col md:flex-row items-center gap-6 w-full">
+                <!-- Avatar with Upload Button -->
+                <div class="relative group cursor-pointer" id="avatar-container"
+                    onclick="document.getElementById('avatar-upload').click()">
+                    <div class="w-24 h-24 rounded-full bg-gradient-to-br from-orange-400 to-orange-600 flex items-center justify-center text-white font-bold text-4xl shadow-[0_0_20px_rgba(249,115,22,0.4)] overflow-hidden"
+                        id="dash-avatar">
+                        ?
+                    </div>
+                    <div
+                        class="absolute inset-0 bg-black/50 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                        <span class="text-xs text-white">Upload</span>
+                    </div>
+                    <input type="file" id="avatar-upload" class="hidden" accept="image/*">
+                </div>
+
+                <!-- User Details -->
+                <div class="flex-grow text-center md:text-left">
+                    <div class="flex items-center justify-center md:justify-start gap-4 mb-2">
+                        <h1 class="text-3xl font-extrabold text-white tracking-tight" id="dash-name">Loading...</h1>
+                        <button id="edit-profile-btn"
+                            class="text-orange-500 hover:text-orange-400 text-sm font-bold bg-orange-500/10 px-2 py-1 rounded-md transition-colors border border-orange-500/30">Edit
+                            Profile</button>
+                    </div>
+                    <p class="text-slate-400 text-lg" id="dash-email">...</p>
+                    <p class="text-slate-500 text-sm mt-1 mb-2">📞 <span id="dash-phone">Not provided</span></p>
+                    <span
+                        class="inline-block px-3 py-1 bg-slate-800 text-orange-500 font-bold rounded-full text-xs mt-2 border border-orange-500/30">Player
+                        Member</span>
+                </div>
+            </div>
+
+            <div class="glass px-6 py-4 rounded-2xl border border-slate-700/50 flex gap-8">
+                <div class="text-center">
+                    <p class="text-slate-400 text-sm font-medium mb-1">Total Bookings</p>
+                    <p class="text-3xl font-bold text-white" id="stat-total">0</p>
+                </div>
+                <div class="text-center">
+                    <p class="text-slate-400 text-sm font-medium mb-1">Approved</p>
+                    <p class="text-3xl font-bold text-green-400" id="stat-approved">0</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Edit Profile Modal (Hidden by default) -->
+        <div id="edit-profile-modal"
+            class="hidden fixed inset-0 z-[100] bg-black/80 backdrop-blur-sm flex items-center justify-center px-4">
+            <div
+                class="glass p-8 rounded-2xl border border-orange-500/30 w-full max-w-md animate-fade-in relative shadow-2xl">
+                <button id="close-modal-btn" class="absolute top-4 right-4 text-slate-400 hover:text-white">✕</button>
+                <h3 class="text-2xl font-bold mb-6 text-white border-b border-slate-700 pb-2">Update Profile</h3>
+
+                <form id="edit-profile-form" class="space-y-4">
+                    <div>
+                        <label class="block text-slate-400 text-sm font-bold mb-2">Display Name</label>
+                        <input type="text" id="edit-name"
+                            class="w-full bg-slate-800 border border-slate-600 rounded-xl px-4 py-3 text-white focus:ring-2 focus:ring-orange-500 outline-none transition-shadow"
+                            required>
+                    </div>
+                    <div>
+                        <label class="block text-slate-400 text-sm font-bold mb-2">Phone Number</label>
+                        <input type="tel" id="edit-phone"
+                            class="w-full bg-slate-800 border border-slate-600 rounded-xl px-4 py-3 text-white focus:ring-2 focus:ring-orange-500 outline-none transition-shadow"
+                            placeholder="e.g. 0412 345 678">
+                    </div>
+                    <div class="pt-4">
+                        <button type="submit"
+                            class="w-full bg-orange-500 hover:bg-orange-600 text-white font-bold py-3 rounded-xl shadow-[0_0_15px_rgba(249,115,22,0.4)] transition-all">Save
+                            Changes</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- My Bookings List -->
+        <h2 class="text-2xl font-bold mb-6 flex items-center gap-2 animate-fade-in delay-100">
+            <span class="text-orange-500">📅</span> My Court Sessions
+        </h2>
+
+        <div class="glass rounded-2xl shadow-lg border border-slate-700/50 overflow-hidden animate-fade-in delay-200">
+            <div class="overflow-x-auto">
+                <table class="w-full text-left border-collapse">
+                    <thead>
+                        <tr class="bg-slate-800/50 text-slate-300 text-sm uppercase tracking-wider">
+                            <th class="p-4 font-semibold border-b border-slate-700">Location</th>
+                            <th class="p-4 font-semibold border-b border-slate-700">Date</th>
+                            <th class="p-4 font-semibold border-b border-slate-700">Time Slot</th>
+                            <th class="p-4 font-semibold border-b border-slate-700">Status</th>
+                            <th class="p-4 font-semibold border-b border-slate-700 text-right">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="bookings-tbody" class="divide-y divide-slate-700/50">
+                        <!-- Bookings injected here -->
+                    </tbody>
+                </table>
+                <div id="no-bookings-msg" class="hidden p-8 text-center text-slate-500 italic">
+                    You haven't made any bookings yet. <a href="booking.html"
+                        class="text-orange-400 hover:underline">Book a court now!</a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer placeholder -->
+    <div id="footer-container" class="mt-auto relative z-10 w-full"></div>
+
+    <!-- Scripts -->
+    <!-- Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/navbar.js"></script>
+    <script src="js/dashboard.js"></script>
+</body>
+
+</html>
